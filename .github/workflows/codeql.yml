@@ -74,3 +74,16 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
+      - name: SecureStack Secrets Analysis
+  # You may pin to the exact commit or the version.
+  # uses: SecureStackCo/actions-secrets@68f5dca939e2bf6b627449bd5c00f1bb423b01ca
+  uses: SecureStackCo/actions-secrets@v0.1.3
+  with:
+    # SecureStack API key - generate one at https://app.securestack.com
+    securestack_api_key: eab61bb5-382c-49d6-9f5b-69897f464fb2.nA4eXadJ0chhyhxrMJUI
+    # SecureStack Application ID - available when viewing applications at https://app.securestack.com
+    securestack_app_id: 1c2e0f13-585f-4bd0-9994-150104209938
+    # Severities lower than this input value will not be reported; value should be one of: critical | high | medium | low
+    severity: high
+    # Optional flags for the bloodhound-cli secrets command - run bloodhound-cli code --help for more details.
+    flags: # optional, default is 
