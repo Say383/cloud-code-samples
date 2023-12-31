@@ -27,6 +27,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Set IO_SERVER_URL variable
+      uses: actions/github-script@v3
+      with:
+        script: |
+          if (!process.env.IO_SERVER_URL) {
+            process.env.IO_SERVER_URL = 'https://io-server.example.com';
+          }
+
     - name: Synopsys Intelligent Security Scan
       id: prescription
       uses: synopsys-sig/intelligent-security-scan@48eedfcd42bc342a294dc495ac452797b2d9ff08
