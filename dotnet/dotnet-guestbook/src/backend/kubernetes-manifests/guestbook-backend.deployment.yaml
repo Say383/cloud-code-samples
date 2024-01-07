@@ -45,7 +45,7 @@ spec:
         - name: GUESTBOOK_DB_ADDR
           value: dotnet-guestbook-mongodb:27017
         - name: IO_SERVER_URL
-          value: <valid_value>
+          value: <updated_url>
       - name: backend
         image: dotnet-guestbook-backend
         ports:
