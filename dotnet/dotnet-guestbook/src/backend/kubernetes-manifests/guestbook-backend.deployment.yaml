@@ -31,7 +31,7 @@ spec:
           - until (mongo --host dotnet-guestbook-mongodb:27017 >/dev/null) do echo "Waiting for connection for 2 sec."; sleep 2; done
       containers:
         - name: IO_SERVER_URL
-          value: <valid_value>
+          value: https://example.com
       - name: backend
         image: dotnet-guestbook-backend
         ports:
