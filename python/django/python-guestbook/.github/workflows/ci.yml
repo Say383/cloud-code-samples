@@ -1,0 +1,46 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run migrations
+        run: python manage.py migrate
+
+      - name: Run tests
+        run: python manage.py test
+
+      - name: Publish artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: python-guestbook-artifacts
+          path: |
+            staticfiles/
+            .coverage
+
+      - name: Deploy to production
+        uses: some-action-for-deployment@v1
+        with:
+          environment: production
+          secret-key: ${{ secrets.PRODUCTION_SECRET_KEY }}
+          database-url: ${{ secrets.PRODUCTION_DATABASE_URL }}
