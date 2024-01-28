@@ -1,0 +1,23 @@
+name: GitHub Actions Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      IO_SERVER_URL: <appropriate_url>
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Synopsys Intelligent Security Scan
+        run: |
+          curl -O https://sigdevsecops.blob.core.windows.net/intelligence-orchestration/2021.01/prescription.sh
+          chmod +x prescription.sh
+          ./prescription.sh $IO_SERVER_URL
