@@ -12,7 +12,7 @@
     </div>
 
 <div class="container posts mt-0">
-    <form class="form-inline" method="POST" action="/post">
+    <form class="form-inline" method="POST" action="@Url.Action("Post", "Home")">
 @Html.AntiForgeryToken()    
         <label class="sr-only" for="name">Name</label>
         <div class="input-group mb-2 mr-sm-2">
