@@ -8,6 +8,7 @@ using System.Net.Http;
 using frontend;
 using System.Net.Http.Headers;
 
+@using dotnet_guestbook.Controllers
 namespace dotnet_guestbook.Controllers
 {
     public class HomeController : Controller
@@ -26,7 +27,9 @@ namespace dotnet_guestbook.Controllers
             _envConfig = environmentConfiguration;
         }
 
-        [HttpGet]
+        [HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Post([FromForm] GuestbookEntry entry)
         public async Task<IActionResult> Index()
         {
             _logger.LogInformation($"Getting all messages");
